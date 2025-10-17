@@ -1,5 +1,7 @@
+/* Global Reset & Font */
 body {
   margin: 0;
+  background-color: #f8f9fa; /* ✅ Soft gray background */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +9,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Code blocks */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* ✅ Base link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ✅ Bootstrap primary button override */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
 }

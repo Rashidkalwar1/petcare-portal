@@ -8,6 +8,12 @@ import Terms from './Terms';
 import Refund from './Refund';
 import ProductShowcase from './ProductShowcase';
 import Footer from './Footer';
+import ProductCreate from './components/ProductCreate';
+import ProductEdit from './components/ProductEdit';
+<header className="text-center py-3 bg-white border-bottom">
+  <h1 className="fw-bold">🐾 Bark Buds – PetCare Portal</h1>
+  <p className="lead">Register pets, explore products, and enjoy trusted care</p>
+</header>
 
 function App() {
   return (
@@ -33,6 +39,7 @@ function App() {
 
       <div className="container mt-4">
         <Routes>
+          <Route path="*" element={<h2>Page Not Found</h2>} />
           <Route path="/" element={
             <div className="text-center mt-4">
               <h2>Welcome to PetCare Portal</h2>
@@ -50,7 +57,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/refund" element={<Refund />} />
+        <Route path="/refund" element={<Refund />} />
+<Route path="/add-product" element={<ProductCreate />} />
+<Route path="/edit-product/:id" element={<ProductEdit />} />
         </Routes>
       </div>
 
