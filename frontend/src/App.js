@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import RegisterPet from './RegisterPet';
 import PetList from './PetList';
@@ -10,14 +10,28 @@ import ProductShowcase from './ProductShowcase';
 import Footer from './Footer';
 import ProductCreate from './components/ProductCreate';
 import ProductEdit from './components/ProductEdit';
-<header className="text-center py-3 bg-white border-bottom">
-  <h1 className="fw-bold">🐾 Bark Buds – PetCare Portal</h1>
-  <p className="lead">Register pets, explore products, and enjoy trusted care</p>
-</header>
+import axios from 'axios';
 
 function App() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://petcare-backend.onrender.com/api/products/')
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
+
   return (
     <Router>
+      <header className="text-center py-3 bg-white border-bottom">
+        <h1 className="fw-bold">🐾 Bark Buds – PetCare Portal</h1>
+        <p className="lead">Register pets, explore products, and enjoy trusted care</p>
+      </header>
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light px-3 border-bottom">
         <Link className="navbar-brand fw-bold" to="/">PetCare Portal</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -49,6 +63,14 @@ function App() {
                 <span>🛍️ Explore Products</span>
                 <span>🔒 Trusted Platform</span>
               </div>
+              <h3 className="mt-4">Featured Products</h3>
+              <ul className="list-group">
+                {products.map(product => (
+                  <li key={product.id} className="list-group-item">
+                    {product.name}
+                  </li>
+                ))}
+              </ul>
             </div>
           } />
           <Route path="/register" element={<RegisterPet />} />
@@ -57,9 +79,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
-        <Route path="/refund" element={<Refund />} />
-<Route path="/add-product" element={<ProductCreate />} />
-<Route path="/edit-product/:id" element={<ProductEdit />} />
+          <Route path="/refund" element={<Refund />} />
+          <Route path="/add-product" element={<ProductCreate />} />
+          <Route path="/edit-product/:id" element={<ProductEdit />} />
         </Routes>
       </div>
 
