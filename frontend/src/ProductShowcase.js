@@ -3,18 +3,14 @@ function ProductShowcase() {
     name: "Comfortable Dog Bed",
     description: "Soft, washable, and stylish — perfect for cozy naps and happy tails 🐶🛏️",
     price: "$29.99",
-    image: "/images/dog-bed.jpg",
+    image: "/images/dog-bed.jpg", // ✅ Corrected path
     affiliateLink: "#", // 👈 Placeholder for future Amazon link
   };
 
   return (
     <div className="container mt-4">
       <h2>Featured Product</h2>
-      <img
-        src={product.image}
-        alt={product.name}
-        className="img-fluid mb-3 rounded shadow-sm"
-      />
+      <img src={product.image} alt={product.name} className="img-fluid w-25 mb-5 rounded shadow-sm" />
       <p>{product.description}</p>
       <p><strong>Price:</strong> {product.price}</p>
       <a
@@ -25,7 +21,7 @@ function ProductShowcase() {
       >
         Buy on Amazon 🛒
       </a>
-      <p className="text-muted small mt-3">
+      <p className="text-muted small mt-5">
         As an Amazon Associate, we may earn from qualifying purchases.
       </p>
     </div>
